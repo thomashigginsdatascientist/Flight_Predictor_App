@@ -14,12 +14,14 @@ library(shinyTime)
 library(lubridate)
 library(shinycssloaders)
 library(leaflet)
+library(caret)
+library(nnet)
 
 #------------------------------------------------
 #------------------------------------------------
 #------------------------------------------------
 
-#Read in gloabl variables
+#Read in global variables
 
 path <- "C:/Users/thigg/Desktop/Career Code/Flight App/App Directory/"
 
@@ -130,7 +132,7 @@ server <- function(input, output, session) {
   
   observeEvent(input$run, {
     
-    input_flight <- train %>%
+    input_flight <<- train %>%
       filter(origin==input$origin) %>%
       filter(dest==input$destination) %>%
       filter(name == input$airline) %>%
@@ -148,6 +150,8 @@ server <- function(input, output, session) {
     
     input_flight <- rbind(training, input_flight)
     input_flight <- input_flight[-1,]
+    
+    print(input_flight)
     
     input_flight$arrival_pred <- predict(arrive, newdata = input_flight)
     input_flight$depart_pred <- predict(depart, newdata = input_flight)
