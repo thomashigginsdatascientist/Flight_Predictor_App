@@ -3,4 +3,4 @@ A Simple R Shiny App, demonstrating a potential use case for using statistical m
 
 This app currently uses a multinomial logistic regression model for predicting if your flight will be early or on time!
 
-The data used to build these models/application comes from the anyflights packages on CRAN!
+The data used to build these models/application comes from the anyflights package on CRAN!
